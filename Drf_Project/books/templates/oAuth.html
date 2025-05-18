@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+</head>
+<body>
+    <a href="{% url 'social:begin' 'github' %}">GitHub</a>
+
+    <form action="{% url 'bookviewsset-html' %}" method="get">
+        <input type="text" name="search" placeholder="Search books..." value="{{ request.GET.search }}">
+        <select name="price">
+            <option value="">Filter by price</option>
+            <option value="1000" {% if request.GET.price == '1000' %}selected{% endif %}>1000</option>
+            <option value="2000" {% if request.GET.price == '2000' %}selected{% endif %}>2000</option>
+        </select>
+        <select name="ordering">
+            <option value="price" {% if request.GET.ordering == 'price' %}selected{% endif %}>Sort by price</option>
+            <option value="author_name" {% if request.GET.ordering == 'author_name' %}selected{% endif %}>Sort by author name</option>
+        </select>
+        <button type="submit">Apply filters</button>
+    </form>
+    
+    <ul>
+        {% for book in books %}
+            <li>{{ book.name }} - {{ book.price }}</li>
+        {% empty %}
+            <li>No books found</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
