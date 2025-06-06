@@ -19,6 +19,22 @@ REST API для управления книгами и отношением по
 
 # Установка и запуск
 
+# Подключить бд
+Найти в settings
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mybasedrf',  # имя вашей базы данных
+        'USER': 'root',      # имя пользователя
+        'PASSWORD': '1234',  # пароль
+        'HOST': 'localhost',    # адрес сервера базы данных
+        'PORT': '3306',         # порт (по умолчанию 3306)
+    }
+}
+
+И поставить значеничя своей бд
+
 ### Установите зависимости
 pip install -r requirements.txt
 
